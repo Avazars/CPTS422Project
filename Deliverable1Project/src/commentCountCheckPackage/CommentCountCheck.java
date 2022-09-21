@@ -24,14 +24,18 @@ public class CommentCountCheck extends AbstractCheck{
 	@Override
     public void visitToken(DetailAST aAST) {
 		count ++;
-    	reportStyleError(aAST, " found");
+		reportStyleError(aAST, "Comment Found");
     }
  
     private void reportStyleError(DetailAST aAST, String variableName) {
-        log(aAST.getLineNo(), "Comment" + variableName);
+        log(aAST.getLineNo(), variableName + "JDS");
     }
-
-
+	
+    @Override
+    public void finishTree(DetailAST aAST) 
+    {
+    	reportStyleError(aAST, "found a total of " + count + " comments");
+    }
     
 	@Override
 	public int[] getDefaultTokens() {
