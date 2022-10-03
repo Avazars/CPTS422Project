@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Partial: net.sf.eclipsecs.sample">
+    <output-path>$PROJECT_DIR$/out/artifacts</output-path>
+    <root id="archive" name="net.sf.eclipsecs.sample_8.35.0.qualifier.jar">
+      <element id="module-output" name="net.sf.eclipsecs.sample" />
+      <element id="directory" name="META-INF">
+        <element id="dir-copy" path="$PROJECT_DIR$/../../422 Plugin/eclipse-cs/net.sf.eclipsecs.sample/META-INF" />
+      </element>
+      <element id="file-copy" path="$PROJECT_DIR$/../../422 Plugin/eclipse-cs/net.sf.eclipsecs.sample/plugin.xml" />
+    </root>
+  </artifact>
+</component>
