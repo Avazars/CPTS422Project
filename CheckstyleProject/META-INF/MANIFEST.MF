@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Deliverable2Project
-Bundle-SymbolicName: Deliverable2Project;singleton:=true
+Bundle-SymbolicName: CheckstyleProject;singleton:=true
 Bundle-Version: 8.35.0.qualifier
 Bundle-Vendor: Eclipse Checkstyle Project
 Require-Bundle: net.sf.eclipsecs.checkstyle,
