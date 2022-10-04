@@ -16,5 +16,10 @@
             <description>%HalsteadVocabulary.desc</description>
         </rule-metadata>
         
+        <rule-metadata name="%HalsteadVolume.name" internal-name="HalsteadVolumeCheck" parent="TreeWalker">
+            <alternative-name internal-name="halsteadCheckPackage.HalsteadVolumeCheck" />
+            <description>%HalsteadVolume.desc</description>
+        </rule-metadata>
+        
     </rule-group-metadata>
 </checkstyle-metadata>
