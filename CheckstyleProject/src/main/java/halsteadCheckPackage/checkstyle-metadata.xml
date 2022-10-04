@@ -21,5 +21,15 @@
             <description>%HalsteadVolume.desc</description>
         </rule-metadata>
         
+         <rule-metadata name="%HalsteadDifficulty.name" internal-name="HalsteadDifficultyCheck" parent="TreeWalker">
+            <alternative-name internal-name="halsteadCheckPackage.HalsteadDifficultyCheck" />
+            <description>%HalsteadVolume.desc</description>
+        </rule-metadata>
+        
+        <rule-metadata name="%HalsteadEffort.name" internal-name="HalsteadEffortCheck" parent="TreeWalker">
+            <alternative-name internal-name="halsteadCheckPackage.HalsteadEffortCheck" />
+            <description>%HalsteadVolume.desc</description>
+        </rule-metadata>
+        
     </rule-group-metadata>
 </checkstyle-metadata>
