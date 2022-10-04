@@ -7,8 +7,14 @@
         <description>%MyCustomChecks.desc</description>
         
         <rule-metadata name="%HalsteadLength.name" internal-name="HalsteadLengthCheck" parent="TreeWalker">
-            <alternative-name internal-name="halsteadCheckPackage.HalsteadLength" />
+            <alternative-name internal-name="halsteadCheckPackage.HalsteadLengthCheck" />
             <description>%HalsteadLength.desc</description>
         </rule-metadata>
+        
+        <rule-metadata name="%HalsteadVocabulary.name" internal-name="HalsteadVocabularyCheck" parent="TreeWalker">
+            <alternative-name internal-name="halsteadCheckPackage.HalsteadVocabularyCheck" />
+            <description>%HalsteadVocabulary.desc</description>
+        </rule-metadata>
+        
     </rule-group-metadata>
 </checkstyle-metadata>
