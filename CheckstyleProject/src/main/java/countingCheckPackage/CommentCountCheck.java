@@ -46,7 +46,7 @@ public class CommentCountCheck extends AbstractCheck{
 	@Override
 	public int[] getRequiredTokens() {
 		// TODO Auto-generated method stub
-		return new int[0];
+		return getDefaultTokens();
 	}
 
 }
