@@ -40,8 +40,6 @@ public class HalsteadLengthCheck extends AbstractCheck{
 		return tokens;
 	}
 
-
-	
 	@Override
 	public int[] getDefaultTokens() {
 		return allOps;

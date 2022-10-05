@@ -6,6 +6,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class CommentCountCheck extends AbstractCheck{
 
+	public int getCount() {
+		return count;
+	}
+
 	private int count = 0;
 	//private static final String CATCH_MSG = "This is the end of a statement. ";
 	
@@ -25,15 +29,11 @@ public class CommentCountCheck extends AbstractCheck{
     public void visitToken(DetailAST aAST) {
 		count ++;
     }
- 
-    private void reportStyleError(DetailAST aAST, String variableName) {
-        log(aAST.getLineNo(), variableName + " JDS");
-    }
-	
+
     @Override
     public void finishTree(DetailAST aAST) 
     {
-    	reportStyleError(aAST, "found a total of " + count + " comments");
+		log(aAST.getLineNo(), "found a total of " + count + " comments" + " JDS");
     	count = 0;
     }
     
@@ -45,7 +45,6 @@ public class CommentCountCheck extends AbstractCheck{
 
 	@Override
 	public int[] getRequiredTokens() {
-		// TODO Auto-generated method stub
 		return getDefaultTokens();
 	}
 
