@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="net.sf.eclipsecs">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../422 Plugin/eclipse-cs/net.sf.eclipsecs.ui" />
+      <root url="file://$PROJECT_DIR$/../../422 Plugin/eclipse-cs/net.sf.eclipsecs.checkstyle" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../../422 Plugin/eclipse-cs/net.sf.eclipsecs.checkstyle/test" />
+      <root url="file://$PROJECT_DIR$/../../422 Plugin/eclipse-cs/net.sf.eclipsecs.core/src" />
+      <root url="file://$PROJECT_DIR$/../../422 Plugin/eclipse-cs/net.sf.eclipsecs.sample/src" />
+      <root url="file://$PROJECT_DIR$/../../422 Plugin/eclipse-cs/net.sf.eclipsecs.ui/src" />
+      <root url="file://$PROJECT_DIR$/../../422 Plugin/eclipse-cs/net.sf.eclipsecs.ui/test" />
+      <root url="file://$PROJECT_DIR$/../../422 Plugin/eclipse-cs/net.sf.eclipsecs.checkstyle" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../../422 Plugin/eclipse-cs/net.sf.eclipsecs.checkstyle" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../../422 Plugin/eclipse-cs/net.sf.eclipsecs.checkstyle" recursive="false" type="SOURCES" />
+  </library>
+</component>

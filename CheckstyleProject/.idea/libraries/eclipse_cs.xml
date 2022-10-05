@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="eclipse-cs">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../422 Plugin/eclipse-cs" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../../422 Plugin/eclipse-cs/net.sf.eclipsecs.checkstyle/test" />
+      <root url="file://$PROJECT_DIR$/../../422 Plugin/eclipse-cs/net.sf.eclipsecs.core/src" />
+      <root url="file://$PROJECT_DIR$/../../422 Plugin/eclipse-cs/net.sf.eclipsecs.sample/src" />
+      <root url="file://$PROJECT_DIR$/../../422 Plugin/eclipse-cs/net.sf.eclipsecs.ui/src" />
+      <root url="file://$PROJECT_DIR$/../../422 Plugin/eclipse-cs/net.sf.eclipsecs.ui/test" />
+    </SOURCES>
+  </library>
+</component>

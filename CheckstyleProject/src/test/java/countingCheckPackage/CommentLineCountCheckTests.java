@@ -1,5 +1,6 @@
 package countingCheckPackage;
 
+import antlr.Token;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.jupiter.api.Test;
@@ -8,8 +9,7 @@ import org.mockito.Spy;
 
 import java.util.Arrays;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.*;
 
 class CommentLineCountCheckTests {
 
@@ -29,13 +29,27 @@ class CommentLineCountCheckTests {
     }
 
     @Test
-    void visitToken() {
+    void visitTokenSingleLine() {
+        doReturn(TokenTypes.SINGLE_LINE_COMMENT).when(mockAst).getType();
+        spyLineCountCheck.visitToken(mockAst);
+        verify(spyLineCountCheck, atLeastOnce()).visitToken(mockAst);
+    }
 
+    @Test
+    void visitTokenBlockComment() {
+        when(mockAst.getType()).thenReturn(TokenTypes.BLOCK_COMMENT_BEGIN).thenReturn(TokenTypes.BLOCK_COMMENT_END);
+        spyLineCountCheck.visitToken(mockAst);
+        spyLineCountCheck.visitToken(mockAst);
+        verify(spyLineCountCheck, atLeast(2)).visitToken(mockAst);
+        assert spyLineCountCheck.getCount() == 1;
     }
 
     @Test
     void finishTree() {
-
+        String message = "found a total of: " + "0" + " lines of comments" + " :JDS";
+        doNothing().when(spyLineCountCheck).log(0,message);
+        spyLineCountCheck.finishTree(mockAst);
+        verify(spyLineCountCheck).finishTree(mockAst);
     }
 
     @Test

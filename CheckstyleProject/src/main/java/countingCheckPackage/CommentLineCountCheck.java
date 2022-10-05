@@ -6,6 +6,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class CommentLineCountCheck extends AbstractCheck{
 
+	public int getCount() {
+		return count;
+	}
 	
 	// used to count the lines of comments in the document.
 	private int count = 0;
@@ -42,14 +45,10 @@ public class CommentLineCountCheck extends AbstractCheck{
 	@Override
     public void finishTree(DetailAST aAST) 
     {
-    	reportStyleError(aAST, "found a total of: " + count + " lines of comments");
-    	count = 0;
+		log(0, "found a total of: " + count + " lines of comments" + " :JDS");
+		count = 0;
     }
-	
-	private void reportStyleError(DetailAST aAST, String variableName) {
-        log(0, variableName + " :JDS");
-    }
-	
+
 	//used to declare the types of tokens that we are allowed to look at
 	@Override
 	public int[] getAcceptableTokens() {
