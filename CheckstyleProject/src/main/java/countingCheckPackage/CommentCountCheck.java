@@ -33,7 +33,7 @@ public class CommentCountCheck extends AbstractCheck{
     @Override
     public void finishTree(DetailAST aAST) 
     {
-		log(aAST.getLineNo(), "found a total of " + count + " comments" + " JDS");
+		log(0, "found a total of " + count + " comments" + " JDS");
     	count = 0;
     }
     

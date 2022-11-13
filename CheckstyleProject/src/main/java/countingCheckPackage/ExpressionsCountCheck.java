@@ -8,9 +8,7 @@ public class ExpressionsCountCheck extends AbstractCheck {
 
 
 	private int count = 0;
-	private String messageBeginning = "Found a total of: ";
-	private String messageEnd = " expressions";
-	
+
 	@Override
 	public int[] getAcceptableTokens() {
 		int[] tokens = {TokenTypes.VARIABLE_DEF};
@@ -27,12 +25,8 @@ public class ExpressionsCountCheck extends AbstractCheck {
 	@Override
     public void finishTree(DetailAST aAST) 
     {
-    	reportStyleError(aAST, messageBeginning + count + messageEnd);
-    	count = 0;
-    }
-	
-	private void reportStyleError(DetailAST aAST, String variableName) {
-        log(0, variableName + " :JDS");
+		log(0, "Found a total of: " + count + " expressions :JDS");
+		count = 0;
     }
 	
 	@Override
