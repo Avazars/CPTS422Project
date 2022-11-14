@@ -1,6 +1,8 @@
 <component name="libraryTable">
-  <library name="net.sf.eclipsecs">
+  <library name="net.sf.eclipsecs1">
     <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../422 Plugin/eclipse-cs/net.sf.eclipsecs.core" />
+      <root url="file://$PROJECT_DIR$/../../422 Plugin/eclipse-cs/net.sf.eclipsecs.sample" />
       <root url="file://$PROJECT_DIR$/../../422 Plugin/eclipse-cs/net.sf.eclipsecs.ui" />
       <root url="file://$PROJECT_DIR$/../../422 Plugin/eclipse-cs/net.sf.eclipsecs.checkstyle" />
     </CLASSES>
