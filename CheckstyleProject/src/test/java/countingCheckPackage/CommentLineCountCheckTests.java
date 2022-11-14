@@ -1,6 +1,5 @@
 package countingCheckPackage;
 
-import antlr.Token;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.junit.jupiter.api.Test;

@@ -16,7 +16,7 @@ public class HalsteadLengthCheck extends AbstractCheck{
 	private ArrayList<Integer> operators = LocalConstants.getOperators();
 	private int allOps[] = LocalConstants.getAllOps();
 	private String messageBeginning = "Halstead Length of: ";
-	private String messageEnd = " ";
+	private String messageEnd = "";
 	
 	@Override
     public void visitToken(DetailAST aAST) {
@@ -24,7 +24,7 @@ public class HalsteadLengthCheck extends AbstractCheck{
     }
 	
 	private void reportStyleError(DetailAST aAST, String variableName) {
-	    log(0, variableName + " JDS");
+	    log(0, variableName + " :JDS");
 	}
 	
 	@Override
