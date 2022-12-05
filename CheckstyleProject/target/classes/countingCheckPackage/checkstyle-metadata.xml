@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE checkstyle-metadata PUBLIC
+"-//eclipse-cs//DTD Check Metadata 1.1//EN"
+"http://eclipse-cs.sourceforge.net/dtds/checkstyle-metadata_1_1.dtd">
+<checkstyle-metadata>
+    <rule-group-metadata name="demo checks"  priority="1600">
+        <description>%MyCustomChecks.desc</description>
+        
+        <rule-metadata name="%CommentCount.name" internal-name="CommentCountCheck" parent="TreeWalker">
+            <alternative-name internal-name="countingCheckPackage.CommentCountCheck" />
+            <description>%CommentCount.desc</description>
+        </rule-metadata>
+        
+        <rule-metadata name="%CommentLineCount.name" internal-name="CommentLineCountCheck" parent="TreeWalker">
+            <alternative-name internal-name="countingCheckPackage.CommentLineCountCheck" />
+            <description>%CommentLineCount.desc</description>
+        </rule-metadata>
+        
+        <rule-metadata name="%LoopingCount.name" internal-name="LoopingCountCheck" parent="TreeWalker">
+            <alternative-name internal-name="countingCheckPackage.LoopingCountCheck" />
+            <description>%LoopingCount.desc</description>
+        </rule-metadata>
+        
+        <rule-metadata name="%OperatorCount.name" internal-name="OperatorCountCheck" parent="TreeWalker">
+            <alternative-name internal-name="countingCheckPackage.OperatorCountCheck" />
+            <description>%OperatorCount.desc</description>
+        </rule-metadata>
+        
+        <rule-metadata name="%OperandCount.name" internal-name="OperandCountCheck" parent="TreeWalker">
+            <alternative-name internal-name="countingCheckPackage.OperandCountCheck" />
+            <description>%OperandCount.desc</description>
+        </rule-metadata>
+        
+        <rule-metadata name="%ExpressionsCount.name" internal-name="ExpressionsCountCheck" parent="TreeWalker">
+            <alternative-name internal-name="countingCheckPackage.ExpressionsCountCheck" />
+            <description>%ExpressionCount.desc</description>
+        </rule-metadata>
+        
+    </rule-group-metadata>
+</checkstyle-metadata>
