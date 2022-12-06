@@ -1,79 +1,47 @@
 package testingBB;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.io.File;
 import java.io.IOException;
 import org.junit.jupiter.api.Test;
-
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.DefaultContext;
-import com.puppycrawl.tools.checkstyle.JavaParser;
-import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
-import com.puppycrawl.tools.checkstyle.api.FileText;
 import countingCheckPackage.ExpressionsCountCheck;
 
 class BBExpressionCountTest {
-
 	@Test
-	void test() throws IOException, CheckstyleException 
+	void ExpressionTestNone() throws IOException, CheckstyleException 
 	{
-		// Build File
-		String filePath = "src/test/resources/testFiles/";
-		File file = new File(filePath + "BBExpressionCountTestFile.java");
-		FileText ft = new FileText(file,"UTF-8");
-		FileContents fc = new FileContents(ft);
-		
-		// Fill AST with FileContents
-		DetailAST root = JavaParser.parse(fc);
-		
 		// Initialize Intended Check
 		ExpressionsCountCheck check = new ExpressionsCountCheck();
-		
-		// Configure Check
-		check.configure(new DefaultConfiguration("Local"));
-		check.contextualize(new DefaultContext());
-		
-		// Initialize Local Variables in Check
-		check.beginTree(root);
-		
-		// Visit Each Token in Tree
-		//helper(check, root);
-		helper(check, root);
-		
-		// Complete tree and display intended logs to user.
-		check.finishTree(root);
-		
-		int result = check.getCount();
-		
+		String filePath = "src/test/resources/testFiles/NoneExpressionCheck.java";
+		TreeWalker treeWalker = new TreeWalker(filePath, check);
+		treeWalker.test();
 		// Verify clean up
-		assertEquals(3, result);
-		System.out.println("LoopingStatementsCheck Done!");
+		assertEquals(0, check.getCount());
+		System.out.println("Expression Test with nothing in it Done!");
 	}
-
-	
-	
-	public void helper(AbstractCheck check, DetailAST token) 
+	@Test
+	void ExpressionTestOne() throws IOException, CheckstyleException 
 	{
-		int[] defaultTokens = check.getDefaultTokens();
-		while(token != null) 
-		{
-			int tokenType = token.getType();
-			for(int i = 0; i < defaultTokens.length; ++i)
-			{
-				if (defaultTokens[i] == tokenType)
-				{
-					check.visitToken(token);
-					break;
-				}
-			}
-			
-			helper(check, token.getFirstChild());
-			token = token.getNextSibling();
-		}
+		// Initialize Intended Check
+		ExpressionsCountCheck check = new ExpressionsCountCheck();
+		String filePath = "src/test/resources/testFiles/OneExpressionCheck.java";
+		TreeWalker treeWalker = new TreeWalker(filePath, check);
+		treeWalker.test();
+		// Verify clean up
+		assertEquals(1, check.getCount());
+		System.out.println("Expression Test with one thing in it Done!");
+	}
+	@Test
+	void ExpressionTestMore() throws IOException, CheckstyleException 
+	{
+		// Initialize Intended Check
+		ExpressionsCountCheck check = new ExpressionsCountCheck();
+		String filePath = "src/test/resources/testFiles/MoreExpressionCheck.java";
+		TreeWalker treeWalker = new TreeWalker(filePath, check);
+		treeWalker.test();
+		// Verify clean up
+		assertEquals(3, check.getCount());
+		System.out.println("Expression Test with multiple things in it Done!");
 	}
 }
 
