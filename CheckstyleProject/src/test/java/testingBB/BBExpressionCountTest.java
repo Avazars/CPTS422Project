@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Hashtable;
-
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -16,10 +14,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-
 import countingCheckPackage.ExpressionsCountCheck;
-import loopingStatementsPackage.LoopingStatementsCheck;
 
 class BBExpressionCountTest {
 
@@ -27,8 +22,8 @@ class BBExpressionCountTest {
 	void test() throws IOException, CheckstyleException 
 	{
 		// Build File
-		String filePath = "src/test/resources/blackBoxTestFiles/";
-		File file = new File(filePath + "BBExpressionCountTest.java");
+		String filePath = "src/test/resources/testFiles/";
+		File file = new File(filePath + "BBExpressionCountTestFile.java");
 		FileText ft = new FileText(file,"UTF-8");
 		FileContents fc = new FileContents(ft);
 		
@@ -46,28 +41,38 @@ class BBExpressionCountTest {
 		check.beginTree(root);
 		
 		// Visit Each Token in Tree
+		//helper(check, root);
 		helper(check, root);
 		
 		// Complete tree and display intended logs to user.
 		check.finishTree(root);
 		
-		//for(LocalizedMessage lm : check.getMessages()) {
-		//	System.out.println(lm.getMessage());
-		//}
-		
-		Hashtable<String,Integer> results = check.getResults();
+		int result = check.getCount();
 		
 		// Verify clean up
-		assertEquals(0, results.get("Looping statements count: "));
+		assertEquals(3, result);
 		System.out.println("LoopingStatementsCheck Done!");
 	}
 
 	
-	public void helper(AbstractCheck b, DetailAST a) {
-		while(a != null) {
-			b.visitToken(a);
-			helper(b,a.getFirstChild());
-			a = a.getNextSibling();
+	
+	public void helper(AbstractCheck check, DetailAST token) 
+	{
+		int[] defaultTokens = check.getDefaultTokens();
+		while(token != null) 
+		{
+			int tokenType = token.getType();
+			for(int i = 0; i < defaultTokens.length; ++i)
+			{
+				if (defaultTokens[i] == tokenType)
+				{
+					check.visitToken(token);
+					break;
+				}
+			}
+			
+			helper(check, token.getFirstChild());
+			token = token.getNextSibling();
 		}
 	}
 }

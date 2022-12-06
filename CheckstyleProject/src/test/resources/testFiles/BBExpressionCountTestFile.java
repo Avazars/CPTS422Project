@@ -1,4 +1,4 @@
-package blackBoxTestFiles;
+package testFiles;
 
 public class BBExpressionCountTestFile {
 
@@ -7,6 +7,8 @@ public class BBExpressionCountTestFile {
 	public void test() 
 	{
 		int x = 2 * 5 + 9;
+		int y = 3 * 5;
+		int z = 99 * 7;
 	};
 	
 }
