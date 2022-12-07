@@ -19,8 +19,13 @@ public class HalsteadLengthCheck extends AbstractCheck{
 	private String messageEnd = "";
 	
 	@Override
+    public void init() {
+		count = 0;
+    }
+	
+	@Override
     public void visitToken(DetailAST aAST) {
-		count ++;
+		count = getCount() + 1;
     }
 	
 	private void reportStyleError(DetailAST aAST, String variableName) {
@@ -30,8 +35,7 @@ public class HalsteadLengthCheck extends AbstractCheck{
 	@Override
     public void finishTree(DetailAST aAST) 
     {
-    	reportStyleError(aAST, messageBeginning + count + messageEnd);
-    	count = 0;
+    	reportStyleError(aAST, messageBeginning + getCount() + messageEnd);
     }
 	
 	@Override
@@ -48,6 +52,10 @@ public class HalsteadLengthCheck extends AbstractCheck{
 	@Override
 	public int[] getRequiredTokens() {
 		return getDefaultTokens();
+	}
+
+	public int getCount() {
+		return count;
 	}
 
 }

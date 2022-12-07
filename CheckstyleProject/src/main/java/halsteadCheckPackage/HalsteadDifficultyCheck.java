@@ -11,7 +11,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class HalsteadDifficultyCheck extends AbstractCheck{
 
-	private int operandCount = 0;
+	private int count = 0;
+	private double output = 0;
 	private HashMap<Integer, Integer> operatorHashMap = new HashMap<>();
 	private HashMap<Integer, Integer> operandHashMap = new HashMap<>();	
 	
@@ -24,6 +25,12 @@ public class HalsteadDifficultyCheck extends AbstractCheck{
 	private String messageBeginning = "Halstead Difficulty is: ";
 	private String messageEnd = "";
 	
+
+	@Override
+	public void init() {
+		count = 0;
+		output = 0;
+	}
 	
 	@Override
     public void visitToken(DetailAST ast) {
@@ -36,7 +43,7 @@ public class HalsteadDifficultyCheck extends AbstractCheck{
 		
 		if (operands.contains(ast.getType())) 
 		{
-			operandCount++;
+			count = getCount() + 1;
 			operandHashMap.put(ast.getType(), 1);
 		}
 		
@@ -54,10 +61,14 @@ public class HalsteadDifficultyCheck extends AbstractCheck{
 		int UOperands = operandHashMap.size();
 		int UOperators = operatorHashMap.size();
 		
-		double output = ((UOperators/2)*operandCount) / UOperands; 
+		if (getCount() != 0) {
+			this.output = ((UOperators/2)*getCount()) / UOperands;
+		} else {
+			output = 0;
+		}
 		
-    	reportStyleError(aAST, messageBeginning + output + messageEnd);
-    	operandCount = 0;
+		
+    	reportStyleError(aAST, messageBeginning + this.getOutput() + messageEnd);
     }
 	
 	
@@ -77,5 +88,13 @@ public class HalsteadDifficultyCheck extends AbstractCheck{
 	@Override
 	public int[] getRequiredTokens() {
 		return getDefaultTokens();
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public double getOutput() {
+		return output;
 	}
 }

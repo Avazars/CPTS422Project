@@ -11,7 +11,8 @@ import global.LocalConstants;
 
 public class HalsteadEffortCheck extends AbstractCheck {
 
-	private int operandCount = 0;
+	private int count = 0;
+	private double effort = 0;
 	private HashMap<Integer, Integer> operatorHashMap = new HashMap<>();
 	private HashMap<Integer, Integer> operandHashMap = new HashMap<>();	
 	
@@ -26,6 +27,12 @@ public class HalsteadEffortCheck extends AbstractCheck {
 	
 	
 	@Override
+	public void init() {
+		count = 0;
+		effort = 0;
+	}
+	
+	@Override
     public void visitToken(DetailAST ast) {
 	
 		
@@ -36,7 +43,7 @@ public class HalsteadEffortCheck extends AbstractCheck {
 		
 		if (operands.contains(ast.getType())) 
 		{
-			operandCount++;
+			count = getCount() + 1;
 			operandHashMap.put(ast.getType(), 1);
 		}
 		
@@ -56,15 +63,15 @@ public class HalsteadEffortCheck extends AbstractCheck {
 		
 		int UOperands = operandHashMap.size();
 		int UOperators = operatorHashMap.size();
+		double difficulty = 0.0;
 		
-		double difficulty = ((UOperators/2)*operandCount) / UOperands; 
+		if (this.getCount() != 0) {
+			difficulty = ((UOperators/2)*getCount()) / UOperands;
+		}
 		
-		double effort = volume * difficulty;
+		this.effort = volume * difficulty;
 		
-		System.out.println(effort);
-		
-    	reportStyleError(aAST, messageBeginning + effort + messageEnd);
-    	operandCount = 0;
+    	reportStyleError(aAST, messageBeginning + getEffort() + messageEnd);
     }
 	
 	
@@ -84,5 +91,13 @@ public class HalsteadEffortCheck extends AbstractCheck {
 	@Override
 	public int[] getRequiredTokens() {
 		return getDefaultTokens();
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public double getEffort() {
+		return effort;
 	}
 }

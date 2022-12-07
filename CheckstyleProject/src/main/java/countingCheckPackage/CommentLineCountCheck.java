@@ -6,16 +6,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class CommentLineCountCheck extends AbstractCheck{
 
-	public int getCount() {
-		return count;
-	}
-	
 	// used to count the lines of comments in the document.
 	private int count = 0;
 	
 	// used to store the current line that we are on when we hit a block comments beginning
 	private int lineCounter = 0;
 	
+	@Override
+	public void init() {
+		count = 0;
+	}
 	
 	// used to allow the treewalker to look at comments
 	@Override
@@ -34,19 +34,18 @@ public class CommentLineCountCheck extends AbstractCheck{
 		{
 			// count should equal the new further line number - the line number we are on, 
 			// but +1 because we still count the number we are on
-			count += aAST.getLineNo() - lineCounter +1;
+			count = getCount() + aAST.getLineNo() - lineCounter +1;
 			lineCounter = 0;
 		}else
 		{
-			count++;
+			count = getCount() + 1;
 		}
     }
 	
 	@Override
     public void finishTree(DetailAST aAST) 
     {
-		log(0, "found a total of: " + count + " lines of comments" + " :JDS");
-		count = 0;
+		log(0, "found a total of: " + getCount() + " lines of comments" + " :JDS");
     }
 
 	//used to declare the types of tokens that we are allowed to look at
@@ -65,6 +64,10 @@ public class CommentLineCountCheck extends AbstractCheck{
 	@Override
 	public int[] getRequiredTokens() {
 		return getDefaultTokens();
+	}
+
+	public int getCount() {
+		return count;
 	}
 
 }

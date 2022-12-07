@@ -11,6 +11,11 @@ public class LoopingCountCheck extends AbstractCheck {
 	private String messageEnd = " looping Statements";
 	
 	@Override
+	public void init() {
+		count = 0;
+	}
+	
+	@Override
 	public int[] getAcceptableTokens() {
 		int[] tokens = {TokenTypes.VARIABLE_DEF};
 		return tokens;
@@ -19,14 +24,13 @@ public class LoopingCountCheck extends AbstractCheck {
 	@Override
 	public void visitToken(DetailAST ast) 
 	{
-		count++;
+		count = getCount() + 1;
 	}
 	
 	@Override
     public void finishTree(DetailAST aAST) 
     {
-    	reportStyleError(aAST, messageBeginning + count + messageEnd);
-    	count = 0;
+    	reportStyleError(aAST, messageBeginning + getCount() + messageEnd);
     }
 	
 	private void reportStyleError(DetailAST aAST, String variableName) {
@@ -42,6 +46,10 @@ public class LoopingCountCheck extends AbstractCheck {
 	@Override
 	public int[] getRequiredTokens() {
 		return getDefaultTokens();
+	}
+
+	public int getCount() {
+		return count;
 	}
 
 }

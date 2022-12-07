@@ -12,6 +12,8 @@ import global.LocalConstants;
 
 public class HalsteadVolumeCheck extends AbstractCheck{
 
+	private double output = 0;
+	private int count = 0;
 	private HashMap<Integer, Integer> hashMap = new HashMap<>();
 	
 	private ArrayList<Integer> operands =  LocalConstants.getOperands();
@@ -20,6 +22,12 @@ public class HalsteadVolumeCheck extends AbstractCheck{
 	
 	private String messageBeginning = "Halstead Volume is: ";
 	private String messageEnd = "";
+	
+	@Override
+	public void init() {
+		this.count = 0;
+		this.output = 0;
+	}
 	
 	@Override
     public void visitToken(DetailAST ast) {
@@ -42,14 +50,14 @@ public class HalsteadVolumeCheck extends AbstractCheck{
     {
 		int N = aAST.getLineNo();
 		int n = hashMap.size();
-		double output = N * (Math.log(n * 1.0)); 
+		this.output = N * (Math.log(n * 1.0)); 
 		
 		if (n == 0) {
-			output = -1;
+			this.output = -1;
 		}
-		//System.out.println(messageBeginning + output + messageEnd);
 		
-    	reportStyleError(aAST, messageBeginning + output + messageEnd);
+		count = hashMap.size();
+    	reportStyleError(aAST, messageBeginning + getOutput() + messageEnd);
     }
 	
 	@Override
@@ -67,5 +75,13 @@ public class HalsteadVolumeCheck extends AbstractCheck{
 	@Override
 	public int[] getRequiredTokens() {
 		return getDefaultTokens();
+	}
+
+	public double getOutput() {
+		return output;
+	}
+
+	public int getCount() {
+		return count;
 	}
 }
